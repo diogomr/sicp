@@ -24,3 +24,28 @@
 (squares-sum-two-largest 1 3 3)
 (squares-sum-two-largest -1 3 3)
 (squares-sum-two-largest -1 10 10)
+
+;; ex1.8
+(define (cube-root guess x)
+  (if (good-enough? (cube guess) x)
+      guess
+      (cube-root (improve-cube-guess x guess) x)
+      ))
+
+(define (good-enough? guess x)
+  (if (< (abs(- guess x)) 0.00000000000000000000000001)
+      true
+      false))
+
+(define (improve-cube-guess x y)
+  (/ (+ (/ x (square y)) (* 2 y)) 3))
+
+(define (cube x)
+  (* x x x))
+
+(cube-root 0.1 27)
+(cube-root 0.1 8)
+(cube-root 0.1 1000)
+(cube-root 0.1 -1)
+(cube-root 0.1 -27)
+(cube-root 0.1 0.25)
