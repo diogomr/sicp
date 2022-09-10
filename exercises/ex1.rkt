@@ -1,10 +1,5 @@
 #lang racket
 
-(define (expect a b)
-  (if (not(= a b))
-      (raise 'failed 'expectation)
-      true))
-
 ;; ex1.2
 (/ (+ 5 4 (- 2 (- 3 (+ 6 (/ 4 5))))) (* 3 (- 6 2) (- 2 7)))
 
@@ -12,17 +7,20 @@
 (define (square x)
   (* x x))
 
-(define (sum_of_square_of_two_largest a b c)
+(define (sumOfSquare a b)
+  (+ (square a) (square b)))
+
+(define (sumOfSquareOfTwoLargest a b c)
   (if (> a b)
       (if (> b c)
-          (+ (square a) (square b))
-          (+ (square a) (square c))
+          (sumOfSquare a b)
+          (sumOfSquare a c)
           )
       (if (> a c)
-          (+ (square a) (square b))
-          (+ (square c) (square b))
+          (sumOfSquare a b)
+          (sumOfSquare c b)
           )))
 
-(expect (sum_of_square_of_two_largest 1 3 3) 18)
-(expect (sum_of_square_of_two_largest -1 3 3) 18)
-(expect (sum_of_square_of_two_largest -1 10 10) 200)
+(sumOfSquareOfTwoLargest 1 3 3)
+(sumOfSquareOfTwoLargest -1 3 3)
+(sumOfSquareOfTwoLargest -1 10 10)
